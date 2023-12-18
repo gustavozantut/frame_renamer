@@ -1,7 +1,4 @@
-import json
-import requests
 import os
-
 import time
 from pathlib import Path
 from shutil import copyfile
