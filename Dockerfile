@@ -7,4 +7,4 @@ RUN rm -rf ./frame_renamer
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 RUN rm requirements.txt
-ENTRYPOINT ["python", "frame_renamer.py"]
+#ENTRYPOINT ["python", "frame_renamer.py"]

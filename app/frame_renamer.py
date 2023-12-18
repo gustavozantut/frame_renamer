@@ -5,6 +5,7 @@ from shutil import copyfile
 
 def main():
 
+    print("iniciando")
     detect_dir = Path("/detect")
     old_det_dir = detect_dir / "old"
 
@@ -13,7 +14,7 @@ def main():
         for item in detect_dir.glob("*")
         if not os.path.samefile(item, old_det_dir)
         and not os.path.commonpath([item, old_det_dir]) == old_det_dir
-    ]:
+    ]:  
         time.sleep(0.5)
 
     latest_detection = sorted(
@@ -25,14 +26,14 @@ def main():
         key=lambda x: x.stat().st_mtime,
         reverse=True,
     )[0].name
-
+    print(f"deteccao {latest_detection}")
     frames_dir = detect_dir / latest_detection / "frames"
     stream_frames_dir = frames_dir / "frames_stream"
     os.makedirs(stream_frames_dir, exist_ok=True)
-
+    print(f"criado {stream_frames_dir}")
     while not os.path.exists(stream_frames_dir):
         time.sleep(0.5)
-
+        print(f"achou {stream_frames_dir}")
     while True:
         
         for filename in sorted(os.listdir(frames_dir)):
@@ -40,6 +41,7 @@ def main():
             frame_count = len([filename for filename in os.listdir(stream_frames_dir)]) or 0
             copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}")
             frame_count += 1
+            print(f"gravou {stream_frames_dir}")
             
         time.sleep(2)
                                     
