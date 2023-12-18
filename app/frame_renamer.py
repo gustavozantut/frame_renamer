@@ -38,7 +38,7 @@ def main():
         for filename in sorted(os.listdir(frames_dir)):
             
             frame_count = len([filename for filename in os.listdir(stream_frames_dir)]) or 0
-            copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}")
+            copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
             frame_count += 1
             
         time.sleep(2)
