@@ -14,7 +14,7 @@ def main():
         for item in detect_dir.glob("*")
         if not os.path.samefile(item, old_det_dir)
         and not os.path.commonpath([item, old_det_dir]) == old_det_dir
-    ]:
+    ]:  
         time.sleep(0.5)
 
     latest_detection = sorted(
