@@ -37,7 +37,7 @@ def main():
         
         try:
         
-            for filename in sorted(os.listdir(frames_dir)):
+            for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
                 frame_count = len([filename for filename in os.listdir(stream_frames_dir)]) or 0
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
