@@ -35,13 +35,19 @@ def main():
 
     while True:
         
-        for filename in sorted(os.listdir(frames_dir)):
+        try:
+        
+            for filename in sorted(os.listdir(frames_dir)):
+                
+                frame_count = len([filename for filename in os.listdir(stream_frames_dir)]) or 0
+                copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
+                frame_count += 1
+                
+            time.sleep(0.5)
+        
+        except:
             
-            frame_count = len([filename for filename in os.listdir(stream_frames_dir)]) or 0
-            copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
-            frame_count += 1
-            
-        time.sleep(2)
+            print("no more frames to rename.")
                                     
 if __name__ == "__main__":
     time.sleep(5)
