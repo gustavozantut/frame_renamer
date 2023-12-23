@@ -8,7 +8,7 @@ old_det_dir = detect_dir / "old"
 
 def get_latest_detection_name(detect_dir=detect_dir,old_det_dir=old_det_dir):
     
-    sorted(
+    latest_detection_name = sorted(
         [item
          for item in detect_dir.glob("*")
          if not os.path.samefile(item, old_det_dir)
@@ -17,6 +17,8 @@ def get_latest_detection_name(detect_dir=detect_dir,old_det_dir=old_det_dir):
         key=lambda x: x.stat().st_mtime,
         reverse=True,
     )[0].name
+    
+    return latest_detection_name
 
 def main():
 
@@ -56,5 +58,6 @@ def main():
             print("no more frames to rename.")
                                     
 if __name__ == "__main__":
+    
     time.sleep(5)
     main()
