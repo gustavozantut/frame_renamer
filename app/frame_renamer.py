@@ -49,7 +49,7 @@ def main():
             for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
                 if filename in renamed_files:
-                    pass
+                    continue
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
                 frame_count += 1
                 renamed_files.append(filename)
