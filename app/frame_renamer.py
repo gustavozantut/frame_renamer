@@ -61,32 +61,28 @@ def main():
     renamed_frames_dir = frames_dir / "renamed_frames"
     os.makedirs(stream_frames_dir, exist_ok=True)
     os.makedirs(renamed_frames_dir, exist_ok=True)
-    logging.warn("dsgoipjaspogjsa")
 
-    # while not os.path.exists(stream_frames_dir):
+    while not os.path.exists(stream_frames_dir):
         
-    #     time.sleep(0.5)
+        time.sleep(0.5)
         
-    # frame_count=0
+    frame_count=0
     
-    # while True:
+    while True:
         
-    #     try:
+        try:
         
-    #         for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
+            for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
-    #             copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
-    #             move(frames_dir / filename, renamed_frames_dir / filename)
-    #             logging.info("movida a foto ",renamed_frames_dir / filename)
-    #             frame_count += 1
-                
-    #         time.sleep(0.5)
+                copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
+                move(frames_dir / filename, renamed_frames_dir / filename)
+                frame_count += 1
         
-    #     except:
+        except:
             
-    #         print("no more frames to rename.")
+            print("no more frames to rename.")
             
-    #         break 
+            break 
                                     
 if __name__ == "__main__":
     
