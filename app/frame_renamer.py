@@ -1,7 +1,7 @@
 import os
 import time
 from pathlib import Path
-from shutil import copyfile
+from shutil import copyfile, move
 
 detect_dir = Path("/detect")
 old_det_dir = detect_dir / "old"
@@ -40,7 +40,6 @@ def main():
         
         time.sleep(0.5)
         
-    renamed_files=[]
     frame_count=0
     
     while True:
@@ -49,19 +48,16 @@ def main():
         
             for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
-                if filename in renamed_files:
-                    
-                    return
-
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
+                move(frames_dir / "renamed_frames" / filename)
                 frame_count += 1
-                renamed_files.append(filename)
                 
             time.sleep(0.5)
         
         except:
             
             print("no more frames to rename.")
+            
             return
                                     
 if __name__ == "__main__":
