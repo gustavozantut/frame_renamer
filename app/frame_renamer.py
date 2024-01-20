@@ -40,7 +40,7 @@ def main():
         
         time.sleep(0.5)
         
-    total_frames = len([filename for filename in os.listdir(stream_frames_dir)])
+    total_frames = len([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))])
     renamed_frames=0
     while True:
         
