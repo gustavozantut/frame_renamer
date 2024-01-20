@@ -49,7 +49,7 @@ def main():
             for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
-                move(frames_dir / "renamed_frames" / filename)
+                move(frames_dir / filename, frames_dir / "renamed_frames" / filename)
                 frame_count += 1
                 
             time.sleep(0.5)
