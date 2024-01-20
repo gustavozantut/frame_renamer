@@ -41,15 +41,16 @@ def main():
         time.sleep(0.5)
         
     frame_count = len([filename for filename in os.listdir(stream_frames_dir)]) or 0
-
+    renamed_files = []
     while True:
         
         try:
         
-            for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
+            for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file)) and filename not in renamed_files]):
                 
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
                 frame_count += 1
+                renamed_files.append(filename)
                 
             time.sleep(0.5)
         
