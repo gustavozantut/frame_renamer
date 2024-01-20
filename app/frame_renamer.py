@@ -57,10 +57,6 @@ def main():
                 frame_count += 1
                 renamed_files.append(filename)
                 
-                
-              
-                    
-
             time.sleep(0.5)
         
         except:
