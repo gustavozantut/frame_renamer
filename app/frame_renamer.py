@@ -34,7 +34,9 @@ def main():
     latest_detection = get_latest_detection_name(detect_dir)
     frames_dir = detect_dir / latest_detection / "frames"
     stream_frames_dir = frames_dir / "frames_stream"
+    renamed_frames_dir = frames_dir / "renamed_frames"
     os.makedirs(stream_frames_dir, exist_ok=True)
+    os.makedirs(renamed_frames_dir, exist_ok=True)
 
     while not os.path.exists(stream_frames_dir):
         
