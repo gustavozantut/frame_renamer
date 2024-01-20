@@ -66,10 +66,10 @@ def main():
     renamed_frames = []
     frame_count=0
     
-    while True:
-        
+    while True:   
+                   
         try:
-        
+       
             for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
                 if filename in renamed_frames:
@@ -80,8 +80,9 @@ def main():
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
                 frame_count += 1
                 renamed_frames.append(filename)
+            
+            break
                 
-        
         except:
             
             print("no more frames to rename.")
