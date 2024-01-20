@@ -50,6 +50,7 @@ def main():
                 
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{renamed_frames}.png")
                 renamed_frames += 1
+                print(renamed_frames,total_frames)
                 
                 if renamed_frames == total_frames:
                     
