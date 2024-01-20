@@ -61,7 +61,7 @@ def main():
     renamed_frames_dir = frames_dir / "renamed_frames"
     os.makedirs(stream_frames_dir, exist_ok=True)
     os.makedirs(renamed_frames_dir, exist_ok=True)
-    logging.info("criado diretorio ",renamed_frames_dir)
+    logging.warn("dsgoipjaspogjsa")
 
     # while not os.path.exists(stream_frames_dir):
         
