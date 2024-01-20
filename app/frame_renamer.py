@@ -63,7 +63,7 @@ def main():
     while not os.path.exists(stream_frames_dir):
         
         time.sleep(0.5)
-    total_frames = len([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))])
+    renamed_frames = []
     frame_count=0
     
     while True:
@@ -72,13 +72,15 @@ def main():
         
             for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
-                copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
-                frame_count += 1
-                
-                if frame_count == total_frames:
+                if filename in renamed_frames:
                     
                     print("no more frames to rename.")
                     break
+                
+                copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
+                frame_count += 1
+                renamed_frames.append(filename)
+                
         
         except:
             
