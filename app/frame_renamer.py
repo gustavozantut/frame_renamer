@@ -57,6 +57,7 @@ def main():
         except:
             
             print("no more frames to rename.")
+            return 1
                                     
 if __name__ == "__main__":
     
