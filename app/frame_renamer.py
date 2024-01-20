@@ -58,14 +58,12 @@ def main():
     latest_detection = get_latest_detection_name(detect_dir)
     frames_dir = detect_dir / latest_detection / "frames"
     stream_frames_dir = frames_dir / "frames_stream"
-    renamed_frames_dir = frames_dir / "renamed_frames"
     os.makedirs(stream_frames_dir, exist_ok=True)
-    os.makedirs(renamed_frames_dir, exist_ok=True)
 
     while not os.path.exists(stream_frames_dir):
         
         time.sleep(0.5)
-        
+    total_frames = len([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))])
     frame_count=0
     
     while True:
@@ -75,13 +73,16 @@ def main():
             for filename in sorted([os.path.join(frames_dir, file) for file in os.listdir(frames_dir) if os.path.isfile(os.path.join(frames_dir, file))]):
                 
                 copyfile(frames_dir / filename, stream_frames_dir / f"frame_{frame_count}.png")
-                move(frames_dir / filename, renamed_frames_dir / filename)
                 frame_count += 1
+                
+                if frame_count == total_frames:
+                    
+                    print("no more frames to rename.")
+                    break
         
         except:
             
             print("no more frames to rename.")
-            
             break 
                                     
 if __name__ == "__main__":
